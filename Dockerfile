@@ -50,7 +50,7 @@ RUN touch $MMONIT_ROOT/logs/error.log && chown monit:monit $MMONIT_ROOT/logs/err
 RUN touch $MMONIT_ROOT/logs/mmonit.log && chown monit:monit $MMONIT_ROOT/logs/mmonit.log;
 
 # Add run scripts
-ADD ./scripts $MMONIT_ROOT/bin/scripts
+# ADD ./scripts $MMONIT_ROOT/bin/scripts
 
 # VOLUME ["$MMONIT_ROOT/database", "$MMONIT_ROOT/ssl"]
 EXPOSE 2812 80 8080

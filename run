@@ -30,6 +30,7 @@ case "$@" in
         tail -F ${MMONIT_ROOT}/logs/error.log \
                 ${MMONIT_ROOT}/logs/mmonit.log &
         echo "Starting momnit..."
+    exec service nginx start &
 	exec ${MMONIT_BIN} start &
 	exec "/bin/bash"
         child=$!

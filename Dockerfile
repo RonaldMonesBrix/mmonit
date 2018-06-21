@@ -21,8 +21,8 @@ RUN groupadd -r $MMONIT_USER \
 
 # Install monit and dependencies for mmonit
 RUN apt-get update
-RUN apt-get -y install wget tar nano
-
+RUN apt-get -y install wget tar nano nginx
+RUN apt-get clean
 # Switch user
 USER $MMONIT_USER
 
@@ -43,16 +43,17 @@ COPY ./monitrc $MMONIT_ROOT/conf/monitrc
 # allows setting things like MONIT_USER at runtime
 COPY ./run $MMONIT_ROOT/bin/run
 USER root
+COPY ./nginx/default /etc/nginx/sites-enabled/default
+
 RUN chown monit:monit ${MMONIT_ROOT}/conf/monitrc
 RUN touch $MMONIT_ROOT/logs/error.log && chown monit:monit $MMONIT_ROOT/logs/error.log;
 RUN touch $MMONIT_ROOT/logs/mmonit.log && chown monit:monit $MMONIT_ROOT/logs/mmonit.log;
-USER monit
 
 # Add run scripts
 ADD ./scripts $MMONIT_ROOT/bin/scripts
 
 # VOLUME ["$MMONIT_ROOT/database", "$MMONIT_ROOT/ssl"]
-EXPOSE 2812 8080
+EXPOSE 2812 80
 
 CMD ["start"]
 ENTRYPOINT ["run"]

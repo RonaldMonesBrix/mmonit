@@ -1,9 +1,6 @@
 #!/bin/bash
 set -e
 
-source "${MMONIT_ROOT}/bin/scripts/lib/config.sh"
-source "${MMONIT_ROOT}/bin/scripts/lib/functions.sh"
-
 ctl() {
     local action="$1"
     ${MMONITBIN} ${action} >/dev/null

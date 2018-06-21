@@ -21,7 +21,7 @@ RUN groupadd -r $MMONIT_USER \
 
 # Install monit and dependencies for mmonit
 RUN apt-get update
-RUN apt-get -y install wget tar
+RUN apt-get -y install wget tar nano
 
 # Switch user
 USER $MMONIT_USER
@@ -44,7 +44,6 @@ COPY ./monitrc $MMONIT_ROOT/conf/monitrc
 COPY ./run $MMONIT_ROOT/bin/run
 USER root
 RUN chown monit:monit ${MMONIT_ROOT}/conf/monitrc
-#RUN touch $MONIT_LOG && chown monit:monit $MONIT_LOG;
 RUN touch $MMONIT_ROOT/logs/error.log && chown monit:monit $MMONIT_ROOT/logs/error.log;
 RUN touch $MMONIT_ROOT/logs/mmonit.log && chown monit:monit $MMONIT_ROOT/logs/mmonit.log;
 USER monit

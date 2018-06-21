@@ -27,10 +27,9 @@ trap _trap SIGTERM SIGINT
 # run monit
 case "$@" in
     start)
-        tail -F ${MMONIT_ROOT}/logs/error.log \
-                ${MMONIT_ROOT}/logs/mmonit.log &
-        echo "Starting momnit..."
+    echo "Starting nginx..."
     exec service nginx start &
+    echo "Starting momnit..."
 	exec ${MMONIT_BIN} start &
 	exec "/bin/bash"
         child=$!

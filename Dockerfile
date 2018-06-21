@@ -12,7 +12,7 @@ ENV PATH $MMONIT_ROOT/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 # Install monit and dependencies for mmonit
 RUN apt-get update
-RUN apt-get -y install wget tar nano
+RUN apt-get -y install wget tar nano nginx
 RUN apt-get clean
 
 # Set workdir to monit root
@@ -26,8 +26,6 @@ RUN mv $MMONIT_ROOT/$MMONIT_VERSION/* . && rm -rf $MMONIT_ROOT/$MMONIT_VERSION
 
 # Make config
 COPY ./monit/monitrc $MMONIT_ROOT/conf/monitrc
-COPY ./monit/server.xml $MMONIT_ROOT/conf/server.xml
-
 
 # Wrapper for setting config on disk from environment
 # allows setting things like MONIT_USER at runtime
@@ -41,7 +39,7 @@ RUN touch $MMONIT_ROOT/logs/mmonit.log;
 # ADD ./scripts $MMONIT_ROOT/bin/scripts
 
 # VOLUME ["$MMONIT_ROOT/database", "$MMONIT_ROOT/ssl"]
-EXPOSE 2812 80 8080
+EXPOSE 2812 80
 
 CMD ["start"]
 ENTRYPOINT ["run"]

@@ -53,7 +53,7 @@ RUN touch $MMONIT_ROOT/logs/mmonit.log && chown monit:monit $MMONIT_ROOT/logs/mm
 ADD ./scripts $MMONIT_ROOT/bin/scripts
 
 # VOLUME ["$MMONIT_ROOT/database", "$MMONIT_ROOT/ssl"]
-EXPOSE 2812 80
+EXPOSE 2812 80 8080
 
 CMD ["start"]
 ENTRYPOINT ["run"]

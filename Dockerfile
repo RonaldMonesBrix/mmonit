@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 MAINTAINER RonaldMones <ronald@brixcrm.nl>
 
-ENV MMONIT_VERSION mmonit-3.7.1
+ENV MMONIT_VERSION mmonit-3.7.10
 ENV MMONIT_ROOT /opt/monit
 ENV MMONIT_BIN $MMONIT_ROOT/bin/mmonit
 ENV MONIT_BIN /usr/bin/monit
